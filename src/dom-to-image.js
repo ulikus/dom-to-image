@@ -689,7 +689,7 @@
                             return Promise.resolve(sheet);
                         }
                     })
-                )
+                );
 
                 function toText(response) {
                     return response.text();
@@ -707,9 +707,10 @@
                         );
                     };
 
-                    function addBaseHrefToUrl(match, p1) {
+                  /*jshint unused:false*/
+                  function addBaseHrefToUrl(match, p1) {
                         var url = /^http/i.test(p1) ?
-                            p1 : concatAndResolveUrl(base, p1)
+                            p1 : concatAndResolveUrl(base, p1);
                         return 'url(\'' + url + '\')';
                     }
 
@@ -718,19 +719,20 @@
                         var url1 = url.split('/');
                         var url2 = concat.split('/');
                         var url3 = [ ];
-                        for (var i = 0, l = url1.length; i < l; i ++) {
-                            if (url1[i] == '..') {
+                        var i = 0, l = url1.length;
+                        for ( ;i < l; i ++) {
+                            if (url1[i] === '..') {
                                 url3.pop();
-                            } else if (url1[i] == '.') {
+                            } else if (url1[i] === '.') {
                                 continue;
                             } else {
                                 url3.push(url1[i]);
                             }
                         }
-                        for (var i = 0, l = url2.length; i < l; i ++) {
-                            if (url2[i] == '..') {
+                        for (i = 0, l = url2.length; i < l; i ++) {
+                            if (url2[i] === '..') {
                                 url3.pop();
-                            } else if (url2[i] == '.') {
+                            } else if (url2[i] === '.') {
                                 continue;
                             } else {
                                 url3.push(url2[i]);
